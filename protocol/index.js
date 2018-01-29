@@ -25,22 +25,22 @@ function onPacket(rawPacket, player, socketAddress) {
 }
 
 function isWorldNameValid(worldName) {
-	/* Validate world name, allowed chars are a..z, 0..9, '_' and '.'
-	final int size = nameBytes.capacity();
-
-	if (size < 3 || size - 2 > 24 || nameBytes.getShort(size - 2) != 1337) {
-		return false;
-	}
-
-	nameBytes.limit(size - 2);
-	for (int i = 0; i < nameBytes.limit(); i++) {
-		final byte b = nameBytes.get(i);
-		if (!((b > 96 && b < 123) || (b > 47 && b < 58) || b == 95 || b == 46)) {
-			return false;
-		}
-	}*/
-	// TODO: implement this
-	return true;
+    const size = worldName.length;
+    /* Should there be a limit for size?
+    if(size < 3 || size > 26) {
+        return false;
+    } */
+    for(let i = 0; i < size; i++) {
+        const char = worldName.charCodeAt(i);
+        if(!(
+            (char > 96 && char < 123) //a-z
+            || (char > 64 && char < 91) //A-Z
+            || (char > 47 && char < 58) //0-9
+            || (char === 95) //'_'
+            || (char === 46) //'.'
+            )) return false;
+    }
+    return true;
 }
 
 module.exports = onPacket;
