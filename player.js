@@ -1,52 +1,52 @@
+'use strict';
+
 class Player {
-    constructor(id, world, socket) {
-        this._id = id;
-        this._world = world;
-        this._socket = socket;
-        this._x = 0;
-        this._y = 0;
-        this._color = 0;
-        this._tool = 0;
-    }
+	constructor(socket) {
+		this._socket = socket;
+	}
 
-    send(message) {
-        this._socket.send(message);
-    }
+	send(message) {
+		this._socket.send(message);
+	}
 
-    update(x, y, tool, color) {
-        this._x = x;
-        this._y = y;
-        this._tool = tool;
-        this._color = color;
-    }
+	kick() {
+		this._socket.close();
+	}
 
-    get id() {
-        return this._id;
-    }
+	update(x, y, tool, color) {
+		this._x = x;
+		this._y = y;
+		this._tool = tool;
+		this._color = color;
+	}
 
-    get world() {
-        return this._world;
-    }
+	get id() {
+		return this._id;
+	}
 
-    get x() {
-        return this._x;
-    }
+	get world() {
+		return this._world;
+	}
 
-    get y() {
-        return this._y;
-    }
+	get x() {
+		return this._x;
+	}
 
-    get tool() {
-        return this._tool;
-    }
+	get y() {
+		return this._y;
+	}
 
-    get color() {
-        return this._color;
-    }
+	get tool() {
+		return this._tool;
+	}
 
-    toString() {
-        return `[Player world:'${this._world.name}' id:${this._id}]`;
-    }
+	get color() {
+		return this._color;
+	}
+
+	toString() {
+		return `[Player world:'${this._world.name}' id:${this._id}]`;
+	}
 }
 
 module.exports = Player;
